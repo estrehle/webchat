@@ -1,0 +1,22 @@
+version: "3"
+services:
+  frontend:
+    build: frontend
+    container_name: ${COMPOSE_PROJECT_NAME}-frontend
+    ports:
+      - ${FRONTEND_PORT}:4200
+  backend:
+    build: backend
+    container_name: ${COMPOSE_PROJECT_NAME}-backend
+    environment:
+      - MY_NAME=${USER_NAME}
+      - MY_URL=http://${COMPOSE_PROJECT_NAME}-backend:3000
+    networks:
+      - webchat
+    ports:
+      - ${BACKEND_PORT}:3000
+networks:
+  # communication between different webchat backends
+  webchat:
+    external: true
+    name: webchat

@@ -1,0 +1,8 @@
+<mat-sidenav-container class="full-height">
+  <mat-sidenav mode="side" opened>
+    <app-sidebar (contactSelected)="onContactSelected($event)"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-chat [selectedContact]="selectedContact"></app-chat>
+  </mat-sidenav-content>
+</mat-sidenav-container>

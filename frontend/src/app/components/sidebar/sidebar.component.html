@@ -1,0 +1,25 @@
+<div class="full-height sidebar-container" fxLayout="column" fxLayoutGap="15px">
+  <!-- my profile -->
+  <div class="my-profile-container" fxLayout="row" fxLayoutAlign="start center">
+    <mat-icon class="my-icon">face</mat-icon>
+    <h1 class="my-name">{{ myName }}</h1>
+  </div>
+
+  <!-- add contact -->
+  <div class="add-contact-container">
+    <button mat-stroked-button class="full-width" (click)="onAddContact()">
+      <mat-icon>add</mat-icon>
+      <span>Add contact</span>
+    </button>
+  </div>
+
+  <!-- contacts -->
+  <div class="contacts-container" fxFlex>
+    <mat-action-list *ngFor="let contact of contacts">
+      <button mat-list-item (click)="onContactSelected(contact)">
+        <mat-icon [ngStyle]="{'color': contact.color ?? 'black'}">face</mat-icon>
+        <span class="contact-name">{{ contact.name }}</span>
+      </button>
+    </mat-action-list>
+  </div>
+</div>

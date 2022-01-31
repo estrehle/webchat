@@ -1,0 +1,32 @@
+<mat-card class="add-contact-card">
+  <mat-card-title>Add contact</mat-card-title>
+  <mat-card-content fxLayout="column" fxLayoutAlign="start start">
+    <p>Share this invitation code:</p>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Generate invitation code</mat-label>
+      <input matInput class="add-contact-created-code" [disabled]="true" type="text" [value]="createdInvitationCode"/>
+      <button matPrefix mat-icon-button (click)="createInvitationCode()"><mat-icon>refresh</mat-icon></button>
+      <button matSuffix mat-icon-button [cdkCopyToClipboard]="createdInvitationCode"><mat-icon>content_copy</mat-icon></button>
+    </mat-form-field>
+
+    <br/>
+
+    Or paste an invitation code shared with you:
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Paste invitation code...</mat-label>
+      <input matInput autocomplete="off" [(ngModel)]="receivedInvitationCode" type="text"/>
+    </mat-form-field>
+
+    <button mat-stroked-button (click)="addContact()">
+      <mat-icon>add</mat-icon>
+      <span>Add contact</span>
+    </button>
+  </mat-card-content>
+
+  <mat-card-footer fxLayoutAlign="row" fxLayoutAlign="end center">
+    <button mat-stroked-button (click)="close()">
+      <span>Close</span>
+    </button>
+  </mat-card-footer>
+</mat-card>

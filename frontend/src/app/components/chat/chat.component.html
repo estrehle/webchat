@@ -1,0 +1,37 @@
+<div *ngIf="contact"
+  class="chat-container full-height full-width"
+  fxLayout="column"
+  fxLayoutAlign="start center"
+  fxLayoutGap="15px"
+  >
+  <div id="messagesContainer" class="messages-container" fxFlex>
+    <div *ngFor="let m of messages"
+      class="message"
+      [class.align-right]="m.sender === 'you'"
+      fxLayout="column"
+    >
+      <div class="message-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="message-sender" [ngStyle]="{'color': m.sender === 'you' ? contact.color : 'black'}">
+          {{ (m.sender === 'me') ? myName : contact?.name }}
+        </span>
+        <span class="message-timestamp">
+          {{ m.timestamp | date:'dd.MM.YY HH:mm' }}
+        </span>
+      </div>
+      <span class="message-content">{{ m.msg }}</span>
+    </div>
+  </div>
+
+  <!-- enter message -->
+  <div class="enter-message-container full-width" fxLayout="row" fxLayoutAlign="start center">
+    <mat-form-field fxFlex appearance="outline">
+      <textarea
+        [(ngModel)]="newMessage"
+        matInput
+        (keydown)="onNewMessageKeydown($event)"
+        placeholder="Enter message..."
+      ></textarea>
+    </mat-form-field>
+    <button mat-icon-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+  </div>
+</div>
