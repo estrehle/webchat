@@ -53,6 +53,15 @@ The message should then also appear in Bob's chat with Alice.
 
 ![Exchange messages](doc/exchange-messages.gif)
 
+### View API Docs
+
+The Webchat backend API is automatically created as an OpenAPI document using the [Nest.js Swagger module](https://docs.nestjs.com/openapi/introduction).
+To view the API docs, browse to
+
+    http://localhost:3001/docs
+
+![API Docs](doc/api-docs.png)
+
 ### Stop Demo
 
 Once you are finished, stop the demo by running
