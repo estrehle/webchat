@@ -43,11 +43,11 @@ Bob should now appear as one of Alice's contacts.
 
 ![Accept invitation as Alice](doc/accept-invitation.gif)
 
-Go back to Bob's frontend (at `http://localhost:4202) and close the *Add contact* dialog if you have not already done so.
-If Alice is not already displayed as a contact, press <kbd>F5</kbd> to reload Bob's contact list.
+Go back to Bob's frontend (at `http://localhost:4202`) and close the *Add contact* dialog if you have not already done so.
+If Alice is not displayed as a contact, press <kbd>F5</kbd> to reload Bob's contact list.
 
 Now that Alice and Bob are connected, they can send messages to each other.
-On Alice's frontend (`http://localhost:4201), click on Bob's name and enter a message in the message window.
+On Alice's frontend (`http://localhost:4201`), click on Bob's name and enter a message in the message window.
 Click the Send button or press <kbd>Ctrl + Enter</kbd>.
 The message should then also appear in Bob's chat with Alice.
 
