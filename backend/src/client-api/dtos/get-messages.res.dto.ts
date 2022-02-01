@@ -4,7 +4,7 @@ import { MessageDto } from './message.dto';
 export class GetMessagesResDto {
   @ApiProperty({
     required: true,
-    type: () => [ MessageDto ],
+    type: () => [MessageDto],
   })
   result: MessageDto[];
 }

@@ -30,8 +30,14 @@ export class ServerApiInboundController {
   })
   @ApiBody({ type: () => SendConfirmationReqDto })
   @ApiResponse({ status: HttpStatus.OK, description: 'OK' })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Not Found: Unknown connection ID' })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request: Connection already confirmed' })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Not Found: Unknown connection ID',
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad Request: Connection already confirmed',
+  })
   receiveConfirmation(
     @Param('connectionId') connectionId: string,
     @Body() body: SendConfirmationReqDto,
@@ -51,8 +57,14 @@ export class ServerApiInboundController {
   })
   @ApiBody({ type: () => SendMessageReqDto })
   @ApiResponse({ status: HttpStatus.OK, description: 'OK' })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Not Found: Unknown connection ID' })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request: Connection still unconfirmed' })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Not Found: Unknown connection ID',
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad Request: Connection still unconfirmed',
+  })
   receiveMessage(
     @Param('connectionId') connectionId: string,
     @Body() body: SendMessageReqDto,

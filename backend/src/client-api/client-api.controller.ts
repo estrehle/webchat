@@ -37,7 +37,11 @@ export class ClientApiController {
   @Post('create-invitation')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create invitation', tags: ['Client'] })
-  @ApiResponse({ status: HttpStatus.CREATED, description: 'Created', type: () => CreateInvitationResDto })
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    description: 'Created',
+    type: () => CreateInvitationResDto,
+  })
   createInvitation(): CreateInvitationResDto {
     const invitationCode = this.connectionService.createInvitation();
     return { invitationCode };
@@ -45,12 +49,25 @@ export class ClientApiController {
 
   @Post('receive-invitation')
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Add contact through invitation code', tags: ['Client'] })
+  @ApiOperation({
+    summary: 'Add contact through invitation code',
+    tags: ['Client'],
+  })
   @ApiBody({ type: () => ReceiveInvitationReqDto })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'Created' })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request: Invalid invitation code' })
-  @ApiResponse({ status: HttpStatus.CONFLICT, description: 'Conflict: Connection already added' })
-  @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Internal Server Error: Could not confirm connection with inviter' })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad Request: Invalid invitation code',
+  })
+  @ApiResponse({
+    status: HttpStatus.CONFLICT,
+    description: 'Conflict: Connection already added',
+  })
+  @ApiResponse({
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+    description:
+      'Internal Server Error: Could not confirm connection with inviter',
+  })
   async receiveInvitation(
     @Body() body: ReceiveInvitationReqDto,
   ): Promise<void> {
@@ -59,7 +76,11 @@ export class ClientApiController {
 
   @Get('contacts')
   @ApiOperation({ summary: 'Get confirmed contacts', tags: ['Client'] })
-  @ApiResponse({ status: HttpStatus.OK, description: 'OK', type: () => GetContactsResDto })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'OK',
+    type: () => GetContactsResDto,
+  })
   getContacts(): GetContactsResDto {
     const connections = this.connections.findAllConfirmed();
     const result = connections.map((c) => ContactDto.fromConnection(c));
@@ -75,9 +96,19 @@ export class ClientApiController {
     type: String,
     example: '9f3cc2ef-8ed6-4ae3-bafd-daae422bcaa3',
   })
-  @ApiResponse({ status: HttpStatus.OK, description: 'OK', type: () => GetMessagesResDto })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Not Found: Unknown connection ID' })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request: Connection still unconfirmed' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'OK',
+    type: () => GetMessagesResDto,
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Not Found: Unknown connection ID',
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad Request: Connection still unconfirmed',
+  })
   getMessagesFor(
     @Param('connectionId') connectionId: string,
   ): GetMessagesResDto {
@@ -104,9 +135,18 @@ export class ClientApiController {
   })
   @ApiBody({ type: () => SendMessageReqDto })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'Created' })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Not Found: Unknown connection ID' })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request: Connection still unconfirmed' })
-  @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Internal Server Error: Message could not be delivered' })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Not Found: Unknown connection ID',
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad Request: Connection still unconfirmed',
+  })
+  @ApiResponse({
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+    description: 'Internal Server Error: Message could not be delivered',
+  })
   async sendMessageTo(
     @Param('connectionId') connectionId: string,
     @Body() body: SendMessageReqDto,
@@ -116,7 +156,11 @@ export class ClientApiController {
 
   @Get('my-info')
   @ApiOperation({ summary: 'Get user info', tags: ['Client'] })
-  @ApiResponse({ status: HttpStatus.OK, description: 'OK', type: () => GetMyInfoResDto })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'OK',
+    type: () => GetMyInfoResDto,
+  })
   getMyInfo(): GetMyInfoResDto {
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     const name = this.config.get('MY_NAME')!;

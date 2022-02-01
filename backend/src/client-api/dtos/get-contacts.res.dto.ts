@@ -4,7 +4,7 @@ import { ContactDto } from './contact.dto';
 export class GetContactsResDto {
   @ApiProperty({
     required: true,
-    type: () => [ ContactDto ],
+    type: () => [ContactDto],
   })
   result: ContactDto[];
 }
